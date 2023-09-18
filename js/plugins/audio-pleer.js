@@ -3,15 +3,17 @@ const audioObj = document.querySelector('#main-audio'),
     audioPlayBtn = document.querySelector('#audio-play'),
     audioNextBtn = document.querySelector('#audio-next'),
     audioProggresArea = document.querySelector('.player__progress-area'),
-    audioProggresItem = document.querySelector('.player__progress-bar'),
+    audioProggresBar = document.querySelector('.player__progress-bar'),
     audioCurrent = document.querySelector('.player__current'),
-    audioDuration = document.querySelector('.player__duration');
+    audioDuration = document.querySelector('.player__duration'),
+    audioRepeatBtn = document.querySelector('#audio-repeat');
 
 const audio = new Audio();
 audio.src = audioObj.src;
 
 let currentAudio = 0;
-let audioProggresBar = 0;
+let audioProgressValue = 0;
+let playlist = true;
 
 audio.addEventListener('loadedmetadata', () => {
     audioDuration.textContent = getMinute(audio.duration);
@@ -29,49 +31,45 @@ audioPlayBtn.addEventListener('click', () => {
 });
 
 audioPrevBtn.addEventListener('click', () => {
-    currentAudio > 0
-        ? currentAudio--
-        : currentAudio = 0;
+    currentAudio--;
 
-    audioObj.setAttribute('src', allMusic[currentAudio].src);
-    audio.src = audioObj.src;
+    if (currentAudio < 0) {
+        currentAudio = allMusic.length - 1;
+    }
 
-    audio.play();
-    audioPlayBtn.classList.remove('pause');
-    audioPlayBtn.classList.add('play');
-    audioPlayBtn.querySelector('.material-icons').textContent = 'pause';
-    audioPlayBtn.setAttribute('title', 'Пауза');
+    replaceSrcAudio();
+    playAudio();
 })
 
 audioNextBtn.addEventListener('click', () => {
-    currentAudio < allMusic.length - 1
-        ? currentAudio++
-        : currentAudio = allMusic.length - 1
+    currentAudio++;
+
+    if (currentAudio > allMusic.length - 1) {
+        currentAudio = 0;
+    }
 
     audioObj.setAttribute('src', allMusic[currentAudio].src);
     audio.src = audioObj.src;
 
-    audio.play();
-    audioPlayBtn.classList.remove('pause');
-    audioPlayBtn.classList.add('play');
-    audioPlayBtn.querySelector('.material-icons').textContent = 'pause';
-    audioPlayBtn.setAttribute('title', 'Пауза');
+    playAudio();
 })
 
 audio.addEventListener('timeupdate', () => {
     audioCurrent.textContent = getMinute(audio.currentTime);
 
-    audioProggresBar = audio.currentTime / audio.duration * 100;
+    audioProgressValue = audio.currentTime / audio.duration * 100;
 
-    audioProggresItem.style.width = `${audioProggresBar}%`;
+    audioProggresBar.style.width = `${audioProgressValue}%`;
 
     if (audio.currentTime == audio.duration) {
         audio.currentTime = 0;
-        audio.pause();
-        audioPlayBtn.classList.remove('play');
-        audioPlayBtn.classList.add('pause');
-        audioPlayBtn.querySelector('.material-icons').textContent = 'play_arrow';
-        audioPlayBtn.setAttribute('title', 'Играть');
+        
+        if(playlist) {
+            currentAudio++;
+            replaceSrcAudio();
+        }
+
+        playAudio();
     }
 })
 
@@ -82,6 +80,19 @@ audioProggresArea.addEventListener('click', (e) => {
     audio.currentTime = (audio.duration / 100) * (X / audioProggresArea.scrollWidth * 100);
 
     audioPlayBtn.classList.contains('play') && audio.play();
+})
+
+audioRepeatBtn.addEventListener('click', () => {
+    classToggle(audioRepeatBtn, 'track');
+    const condition = audioRepeatBtn.classList.contains('track');
+
+    if (condition) {
+        insertText(audioRepeatBtn, 'repeat_one');
+        playlist = false;
+    } else {
+        insertText(audioRepeatBtn, 'repeat');
+        playlist = true;
+    }
 })
 
 function playAudio() {
@@ -98,4 +109,9 @@ function pauseAudio() {
     classAdd(audioPlayBtn, 'pause');
     insertText(audioPlayBtn, 'play_arrow');
     audioPlayBtn.setAttribute('title', 'Играть');
+}
+
+function replaceSrcAudio() {
+    audioObj.setAttribute('src', allMusic[currentAudio].src);
+    audio.src = audioObj.src;
 }

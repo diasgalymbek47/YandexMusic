@@ -21,3 +21,7 @@ const classAdd = (item, _class) => {
 const classRemove = (item, _class) => {
     item.classList.remove(_class);
 }
+
+const classToggle = (item, _class) => {
+    item.classList.toggle(_class);
+}
