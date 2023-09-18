@@ -1,0 +1,45 @@
+@import "../common/vars";
+
+.page-content-right {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    
+    &__box {
+        position: sticky;
+        top: 20px;
+    }
+
+    img {
+        width: 300px;
+        aspect-ratio: 3/1;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    &__our-pages{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+        h4 {
+            margin-top: 20px;
+            text-transform: uppercase;
+            color: $desc;
+        }
+
+        a {
+            font-family: 'Courier New';
+            margin-top: 10px;
+            font-size: 20px;
+            padding: 10px 0;
+            width: 67%;
+            color: $box-bg;
+            border-radius: 5px;
+            background: linear-gradient(90deg, rgb(246, 139, 156), rgb(209, 111, 209));
+        }
+        a:hover {
+            background: linear-gradient(90deg, rgb(139, 246, 150), rgb(59, 136, 225));
+        }
+    }
+}

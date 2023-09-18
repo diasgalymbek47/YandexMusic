@@ -3,16 +3,15 @@
 .header {
     border-bottom: 1px solid $border;
 
-    &__container {
-        display: flex;
-        align-items: center;
-        column-gap: 110px;
+    display: flex;
+    align-items: center;
+    column-gap: 110px;
+    padding: 0 20px;
 
-        @media (max-width: 865px) {
-            column-gap: 50px;
-            padding-top: 10px;
-            flex-wrap: wrap;
-        }
+    @media (max-width: 865px) {
+        column-gap: 50px;
+        padding-top: 10px;
+        flex-wrap: wrap;
     }
 
     &__logo {
@@ -36,7 +35,7 @@
     &__menu {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 20px;
 
         @media (max-width: 450px) {

@@ -15,25 +15,28 @@ input[type="submit"] {
 }
 
 .page {
-    max-width: 950px;
+    max-width: 1440px;
+    padding: 0 0px;
     margin: 0 auto;
+    background-color: $box-bg;
 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-.header,
-.main,
-.footer {
-    flex-grow: 1;
 
-    background-color: $box-bg;
+    &__content {
+        display: flex;
+    }
+
+    &__content-left {
+        border-right: 1px solid $border;
+    }
 }
 
 [class*=__container] {
-    max-width: 930px;
+    max-width: 950px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 30px;
 
     @media (max-width: 640px) {
         padding: 0 10px;
