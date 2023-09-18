@@ -1,8 +1,9 @@
-.material-icons:not(.player__play-pause i) {
+.material-icons{
     cursor: pointer;
-    font-size: 24px;
     user-select: none;
-    color: $notActive-text;
+    color: #c9c9c9;
+    font-size: 24px;
+    padding: 0 5px;
     &:hover {
         color: $active-text;
     }
@@ -20,20 +21,18 @@
     }
 
     &__progress-area {
-        background-color: #aaa;
-        height: 16px;
+        background-color: #c9c9c9;
+        height: 12px;
         position: relative;
-
         cursor: pointer;
     }
 
     &__progress-bar {
+        pointer-events: none;
         background-color: $button-bg;
         border-radius: 0 5px 5px 0;
         height: 100%;
         width: 0;
-
-        pointer-events: none;
     }
 
     &__timer,
@@ -41,16 +40,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 12px;
     }
 
     &__current,
     &__duration {
+        pointer-events: none;
+        font-size: 9.5px;
         position: absolute;
         left: 8px;
         bottom: 0;
-
-        pointer-events: none;
     }
     &__duration {
         left: auto;
@@ -60,70 +58,35 @@
     /*>───────────────────controls────────────────────<*/
 
     &__controls {
-        height: 70px;
+        margin: 0 15px;
+        height: 60px;
         padding: 5px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: #fff;
         border-bottom: 1px solid #dddddd;
     }
 
     &__left,
     &__track,
     &__track-controls,
-    &__right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
+    &__right,
     &__swiches {
         display: flex;
         align-items: center;
-        user-select: none;
-
-        i:not(.player__play-pause i) {
-            margin-left: 15px;
-            font-size: 32px;
-        }
+        gap: 14px;
     }
-    &__play-pause {
-        margin-left: 15px;
-        background: linear-gradient(#fffefe 0%, #cecaca 100%);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        box-shadow: 0 3px 15px -2px rgba($color: $active-text, $alpha: 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
 
-        &:before {
-            content: "";
-            width: 38px;
-            height: 38px;
-            position: absolute;
-            border-radius: inherit;
-            background: linear-gradient($border 0%, $notActive-text 100%);
-        }
-
+    &__swiches {
         i {
+            font-size: 32px;
             display: flex;
-            justify-content: center;
-            line-height: 40px;
-            position: relative;
-            font-size: 24px;
-            color: $box-bg;
-        }
-        &:hover i {
-            color: $active-text;
         }
     }
 
     &__track {
         img {
-            width: 60px;
-            height: 60px;
-            margin-right: -8px;
+            width: 50px;
+            height: 50px;
+            margin-right: -4px;
             cursor: pointer;
         }
     }
@@ -131,12 +94,14 @@
     &__track-desc {
         max-width: 150px;
         overflow-x: hidden;
+        font-size: 12px;
     }
 
     &__name {
         margin-bottom: 4px;
         font-weight: 700;
     }
+
     &__name:hover,
     &__artist:hover {
         cursor: pointer;
@@ -144,9 +109,13 @@
     }
 
     &__right {
-        margin-right: 15px;
         @media (width < 678px) {
             display: none;
+        }
+    }
+
+    &__volume {
+        span {
         }
     }
 
