@@ -1,0 +1,184 @@
+.form__wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 99;
+
+    opacity: 0;
+    pointer-events: none;
+}
+.show-form .form__wrap {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+}
+
+.form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 720px;
+    width: 100%;
+    border: 2px solid $box-bg;
+    background-color: $box-bg;
+    z-index: 100;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+
+    &__close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 28px;
+        color: $notActive-text;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &__box {
+        display: flex;
+        flex-wrap: wrap;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        a {
+            color: $form-active;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__details {
+        padding: 10px;
+
+        flex: 1 0 330px;
+        text-align: center;
+        color: $box-bg;
+        text-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 1);
+        font-weight: 600;
+        padding: 0 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__content {
+        flex: 1 0 380px;
+        padding: 35px;
+    }
+
+    &__input-field {
+        height: 50px;
+        width: 100%;
+        margin-top: 20px;
+        position: relative;
+        input {
+            width: 100%;
+            height: 100%;
+            font-size: 15px;
+            padding: 0 15px;
+            outline: none;
+            border-radius: 3px;
+            border: 1px solid $desc;
+        }
+        input:focus {
+            border-color: $form-active;
+        }
+        input:is(:focus, :valid) {
+            padding: 16px 15px 0;
+        }
+        label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            color: $notActive-text;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: 0.2s ease;
+        }
+        input:is(:focus, :valid) ~ label {
+            color: $form-active;
+            font-size: 12px;
+            transform: translateY(-120%);
+        }
+    }
+
+    &__forgot-pass,
+    &__policy-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 14px;
+        font-size: 15px;
+    }
+
+    form button {
+        width: 100%;
+        padding: 14px 0;
+        margin: 25px 0;
+        outline: none;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 3px;
+        background-color: $form-active;
+        transition: 0.2s ease;
+        &:hover {
+            background-color: #0097a7;
+        }
+    }
+
+    &__bottom-link {
+        text-align: center;
+    }
+    @media (width < 760px) {
+        width: 90%;
+        &__details {
+            display: none;
+        }
+        &__content {
+            padding: 30px 20px;
+        }
+    }
+}
+.form .signup,
+.form.show-signup .login {
+    display: none;
+}
+.form.show-signup .signup {
+    display: flex;
+}
+
+.show-form .form {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.form__box.login .form__details {
+    background: url(../img/form-login.jpg) left no-repeat;
+    background-size: cover;
+}
+.form__box.signup .form__details {
+    background: url(../img/form-signup.jpg) center no-repeat;
+    background-size: cover;
+}
+.no-scroll {
+    overflow: hidden;
+}

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="./img/icons/favicon.png" sizes="32x32">
+    <!-- Google-Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/base.min.css">
+    <link rel="stylesheet" href="./css/main.min.css">
+
+    <!--JS-->
+    <script defer src="./js/main.js"></script>
+    <!--JS-plugins-->
+    <script defer src="./js/plugins/search.js"></script>
+    <script defer src="./js/plugins/slider.js"></script>
+    <script defer src="./js/plugins/form.js"></script>
+    <script defer src="./js/plugins/audio-pleer.js"></script>
+    <script defer src="./js/functions.js"></script>
+
+    <title>Яндекс Музыка — собираем музыку и подкасты для вас</title>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header__container">
+                <a class="header__logo" href="#"></a>
+
+                <nav class="header__navbar">
+                    <ul class="header__menu">
+                        <li class="header__menu-item active">Главное</li>
+                        <li class="header__menu-item">Подкасты</li>
+                        <li class="header__menu-item">Популярные</li>
+                        <li class="header__menu-item">Подборки</li>
+                        <li class="header__menu-item">
+                            <form class="header__form" id="search-form" action="">
+                                <input class="header__form-search hidden" id="search-field" type="search"
+                                    placeholder="Трек, альбом, исполнитель, подкаст">
+                                <input class="header__form-submit" id="search-btn" type="submit" value="">
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+
+                <button class="header__user-auth-button" id="auth-btn">Войти</button>
+
+                <!--По-умолчанию скрыто, будет видно после авторизации-->
+                <div class="header__user hidden">
+                    <button class="header__user-button"></button>
+
+                    <div class="header__user-actions">
+                        <button class="header__user-action">Коллекция</button>
+                        <button class="header__user-action">Настройки</button>
+                        <button class="header__user-action">Выйти</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--! Form -->
+        <div class="form__wrap"></div>
+        <div class="form">
+            <span class="form__close">&times;</span>
+            <div class="form__box login">
+                <div class="form__details">
+                    <h2>Добро пожаловать</h2>
+                    <p>Пожалуйста, войдите в систему, используя свою личную информацию, чтобы оставаться на связи с
+                        нами.</p>
+                </div>
+                <div class="form__content">
+                    <h2>ВОЙТИ</h2>
+                    <form action="">
+                        <div class="form__input-field">
+                            <input type="text" required>
+                            <label>Почта</label>
+                        </div>
+                        <div class="form__input-field">
+                            <input type="password" required>
+                            <label>Пароль</label>
+                        </div>
+                        <a href="#" class="form__forgot-pass">Забыли пароль?</a>
+                        <button type="submit">Авторизоваться</button>
+                    </form>
+                    <div class="form__bottom-link">
+                        У вас нет учетной записи?
+                        <a href="#" id="signup-link">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--? Form Signup  -->
+            <div class="form__box signup">
+                <div class="form__details">
+                    <h2>Создать аккаунт</h2>
+                    <p>Чтобы стать частью нашего сообщества, пожалуйста, зарегистрируйтесь, используя свою личную
+                        информацию.</p>
+                </div>
+                <div class="form__content">
+                    <h2>ЗАРЕГИСТРИРОВАТЬСЯ</h2>
+                    <form action="">
+                        <div class="form__input-field">
+                            <input type="text" required>
+                            <label>Введите вашу почту</label>
+                        </div>
+                        <div class="form__input-field">
+                            <input type="password" required>
+                            <label>Придумайте пароль</label>
+                        </div>
+                        <div class="form__policy-text">
+                            <input type="checkbox" id="policy">
+                            <label for="policy">
+                                Я согласен с
+                                <a href="#">Условиями использования</a>
+                            </label>
+                        </div>
+                        <button type="submit">Зарегистрироваться</button>
+                    </form>
+                    <div class="form__bottom-link">
+                        У вас уже есть аккаунт?
+                        <a href="#" id="login-link">Войти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--! End of Form -->
+
+
+        <main class="main">
+            <!-- -------- Tabs ----------------------- -->
+            <section class="tabs">
+                <div class="tabs__container">
+                    <h1 class="tabs__title">Главное</h1>
+                    <ul class="tabs__nav">
+                        <li class="tabs__item active">Всё</li>
+                        <li class="tabs__item">Новые Релизы</li>
+                        <li class="tabs__item">Чарт</li>
+                        <li class="tabs__item">Подборки</li>
+                        <li class="tabs__item">Нейромузыка</li>
+                    </ul>
+                </div>
+            </section>
+            <!-- -------- End of Tabs ----------------------- -->
+
+            <!-- -------- Interesting ----------------------- -->
+            <section class="interesting">
+                <div class="interesting__container">
+                    <h2 class="interesting__title">Интересно сейчас</h2>
+
+                    <div class="interesting__slider">
+                        <div class="interesting__slider-wrapper">
+                            <div class="interesting__slider-line">
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Плейлист</span>
+                                    <div class="interesting__slider-slide-title">Громкие новинки месяца</div>
+                                    <p class="interesting__slider-slide-subtitle">NILETTO, Gruppa Skryptonite, SALUKI и
+                                        другие</p>
+                                </div>
+
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img2.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Сингл</span>
+                                    <div class="interesting__slider-slide-title">NILETTO и осенняя меланхолия</div>
+                                    <p class="interesting__slider-slide-subtitle">Минорная история о жестокой любви</p>
+                                </div>
+
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Плейлист</span>
+                                    <div class="interesting__slider-slide-title">Громкие новинки месяца</div>
+                                    <p class="interesting__slider-slide-subtitle">NILETTO, Gruppa Skryptonite, SALUKI и
+                                        другие</p>
+                                </div>
+
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Плейлист</span>
+                                    <div class="interesting__slider-slide-title">Громкие новинки месяца</div>
+                                    <p class="interesting__slider-slide-subtitle">NILETTO, Gruppa Skryptonite, SALUKI и
+                                        другие</p>
+                                </div>
+
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img2.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Сингл</span>
+                                    <div class="interesting__slider-slide-title">NILETTO и осенняя меланхолия</div>
+                                    <p class="interesting__slider-slide-subtitle">Минорная история о жестокой любви</p>
+                                </div>
+
+                                <div class="interesting__slider-slide">
+                                    <img class="interesting__slider-slide-img" src="./img/music-img/interestng-img.png"
+                                        alt="img">
+
+                                    <span class="interesting__slider-slide-type">Плейлист</span>
+                                    <div class="interesting__slider-slide-title">Громкие новинки месяца</div>
+                                    <p class="interesting__slider-slide-subtitle">NILETTO, Gruppa Skryptonite, SALUKI и
+                                        другие</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="interesting__slider-btn-prev"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                height="14" viewBox="0 0 8 14" fill="none">
+                                <path d="M2.8 7L8 1.5L6.6 0L0 7L6.6 14L8 12.5L2.8 7Z" fill="#808080" />
+                            </svg></button>
+                        <button class="interesting__slider-btn-next"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                height="14" viewBox="0 0 8 14" fill="none">
+                                <path d="M0 12.523L1.39 14L8 7L1.39 0L0 1.477L5.215 7L0 12.523Z" fill="#808080" />
+                            </svg></button>
+                    </div>
+                </div>
+            </section>
+            <!-- -------- End of Interesting ----------------------- -->
+
+            <!-- -------- music ----------------------- -->
+            <section class="music">
+                <div class="music__container">
+                    <a class="music__head">
+                        <h2 class="music__subtitle">Подкасты</h2>
+                        <div class="music__description">
+                            <p class="music__description-text">Слушайте не только музыку</p>
+                            <span class="music__description-link">Смотреть всё</span>
+                        </div>
+                    </a>
+                    <div class="music__content">
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/atomic-heart.jpeg" alt="atomic-heart-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Харальд Хорф. «Atomic Heart. Предыстория…</h4>
+                                <p class="music__content-text"></p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>28 407</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/time-and-money.jpg" alt="atomic-heart-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Время и деньги</h4>
+                                <p class="music__content-text">Подкаст о роли бизнеса в истории</p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>2 509</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/year-porno.jpg" alt="atomic-heart-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Илья Мамаев-Найлз. «Год порно»</h4>
+                                <p class="music__content-text"></p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>100 577</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/ted-best.jpg" alt="atomic-heart-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">TED Лучшее</h4>
+                                <p class="music__content-text">Избранные выступления TED</p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>79 282</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- -------- End of music ----------------------- -->
+
+            <!-- -------- New ----------------------- -->
+            <section class="new music">
+                <div class="music__container">
+                    <a class="music__head">
+                        <h2 class="music__subtitle">Новые релизы</h2>
+                        <div class="music__description">
+                            <p class="music__description-text">Новые треки, альбомы и сборники</p>
+                            <span class="music__description-link">Смотреть всё</span>
+                        </div>
+                    </a>
+                    <div class="music__content">
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/who-i-am_instasamka.jpg" alt="who-i-am-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Who I Am</h4>
+                                <p class="music__content-text">INSTASAMKA</p>
+                                <p class="music__content-text">сингл</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/poteplelo_skryptonite.jpg" alt="poteplelo-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Потеплело</h4>
+                                <p class="music__content-text">Gruppa Skryptonite</p>
+                            </div>
+
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/pryamo-za-toboi_saluki.jpg" alt="pryamo-za-toboi-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">ПРЯМО ЗА ТОБОЙ</h4>
+                                <p class="music__content-text">SALUKI</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/old-days_andshpile.jpg" alt="old-days-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Old Days</h4>
+                                <p class="music__content-text">Эндшпиль</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- -------- End of New ----------------------- -->
+
+            <!-- -------- Papular ----------------------- -->
+            <section class="papular music">
+                <div class="music__container">
+                    <a class="music__head">
+                        <h2 class="music__subtitle">Популярные плейлисты</h2>
+                        <div class="music__description">
+                            <p class="music__description-text">Собрано для вас нашей редакцией</p>
+                            <span class="music__description-link">Смотреть всё</span>
+                        </div>
+                    </a>
+                    <div class="music__content">
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/bignews-of-the-month.jpg" alt="bignews-of-the-month-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Громкие новинки месяца</h4>
+                                <p class="music__content-text">На обложке: INSTASAMKA <br> Их ждали!</p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>511 978</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/new-FM.jpg" alt="new-FM-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Новинки FM</h4>
+                                <p class="music__content-text">На обложке: MOT <br>Свежие треки в эфире российских
+                                    радиостанций</p>
+                                <p class="music__content-text">На обложке: MOT <br>Свежие треки в эфире российских
+                                    радиостанций</p>
+                            </div>
+                            <div class="music__content-follow">
+                                <span>
+                                    <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                            stroke="#808080" stroke-width="1.16667" />
+                                    </svg>
+                                </span>
+                                <span>66 513</span>
+                            </div>
+
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/summer-vibe-2023.jpg" alt="summer-vibe-2023-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">Лето, вайб, 2023</h4>
+                                <p class="music__content-text">Продлите летний вайб с треками, которые чаще всего
+                                    звучали у слушателей Яндекс Музыки этим летом</p>
+                                <p class="music__content-text">Продлите летний вайб с треками, которые чаще всего
+                                    звучали у слушателей Яндекс Музыки этим летом</p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>10 893</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="music__content-item">
+                            <div class="music__content-img">
+                                <img src="img/music-img/100-superhit.jpg" alt="100-superhit-img">
+                                <div class="music__content-controls">
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <path fill="#595959" stroke-width="2"
+                                                d="M12 19.587c-1.116-1.104-3.173-3.126-3.917-3.87l-.317-.317c-.912-.914-1.69-1.712-2.335-2.393-1.867-1.975-1.894-4.871-.16-6.695 1.668-1.756 4.341-1.748 6 .017l.729.775.729-.775c1.659-1.765 4.331-1.773 6-.017 1.734 1.824 1.707 4.72-.16 6.695-.644.681-1.424 1.478-2.335 2.393l-.316.316c-.738.737-2.8 2.765-3.918 3.871z" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32"
+                                            height="32">
+                                            <path d="M9 6l10 6-10 6V6z" fill="#595959" />
+                                        </svg>
+                                    </button>
+                                    <button class="music__content-controls-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path opacity=".2" />
+                                                <path fill="#595959"
+                                                    d="M11 4.875L8 7.5l-1-1 5-5 5 5-1 1-3-2.625V13h-2V4.875zM20 18v2H4V10h2v8h12v-8h2v8z" />
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="music__content-description">
+                                <h4 class="music__content-name">100 суперхитов</h4>
+                                <p class="music__content-text">На обложке: «Винтаж», ТРАВМА, SKIDRI Самые популярные
+                                    треки за последние несколько лет.</p>
+                                <p class="music__content-text">На обложке: «Винтаж», ТРАВМА, SKIDRI Самые популярные
+                                    треки за последние несколько лет.</p>
+                                <div class="music__content-follow">
+                                    <span>
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6.00008 9.42577C5.34908 8.78177 4.14917 7.60227 3.71517 7.16827L3.53025 6.98335C2.99825 6.45018 2.54442 5.98468 2.16817 5.58743C1.07909 4.43535 1.06334 2.74602 2.07484 1.68202C3.04784 0.657685 4.60709 0.662352 5.57484 1.69193L6.00008 2.14402L6.42533 1.69193C7.39308 0.662352 8.95175 0.657685 9.92533 1.68202C10.9368 2.74602 10.9211 4.43535 9.832 5.58743C9.45633 5.98468 9.00133 6.4496 8.46992 6.98335L8.28558 7.16768C7.85508 7.5976 6.65225 8.7806 6.00008 9.42577Z"
+                                                stroke="#808080" stroke-width="1.16667" />
+                                        </svg>
+                                    </span>
+                                    <span>360 063</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- -------- End of Papular ----------------------- -->
+
+            <!-- -------- Chart ----------------------- -->
+            <section class="chart">
+                <div class="chart__container">
+
+                </div>
+            </section>
+            <!-- -------- End of Chart ----------------------- -->
+
+            <!-- -------- Selection ----------------------- -->
+            <section class="selection music">
+                <div class="music__container">
+                    <a class="music__head">
+                        <h2 class="music__subtitle">Подборки</h2>
+                        <div class="music__description">
+                            <p class="music__description-text">Плейлисты, подобранные под настроение или по жанру</p>
+                            <span class="music__description-link">Смотреть всё</span>
+                        </div>
+                    </a>
+                    <div class="music__content">
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/autumn.jpg" alt="autumn-img">
+                                <p class="music__content-img-text">Осенняя</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/in-trend.jpg" alt="in-trend-img">
+                                <p class="music__content-img-text">В тренде</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/new-clips.jpg" alt="new-clips-img">
+                                <p class="music__content-img-text">Новинки клипов</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/editors-choice.jpg" alt="editors-choice-img">
+                                <p class="music__content-img-text">Выбор редакциии</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/every-day.jpg" alt="every-day-img">
+                                <p class="music__content-img-text">Будничная</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/exclusive.jpg" alt="exclusive-img">
+                                <p class="music__content-img-text">Эксклюзивы</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/100-hits.jpg" alt="100-hits-img">
+                                <p class="music__content-img-text">100 хитов</p>
+                            </div>
+                        </div>
+                        <div class="music__content-item -outline">
+                            <div class="music__content-img">
+                                <img src="img/music-img/new-hits.jpg" alt="new-hits-img">
+                                <p class="music__content-img-text">Новые хиты</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="separator"></span>
+                </div>
+            </section>
+            <!-- -------- End of Selection ----------------------- -->
+        </main>
+
+
+        <footer class="footer">
+            <div class="footer__container">
+                <div class="footer__info">
+                    <div class="footer__info-links">
+                        <a class="footer__info-link"
+                            href="https://yandex.kz/support/music/performers-and-copyright-holders/copyright.html?lang=ru">Правообладателям</a>
+                        <a class="footer__info-link"
+                            href="https://yandex.ru/legal/music_termsofuse/?lang=ru">Пользовательское соглашение</a>
+                        <a class="footer__info-link"
+                            href="https://yandex.kz/support/music/index.html?lang=ru">Справка</a>
+                    </div>
+                    <p class="footer__disclaimer">Сервис Яндекс Музыка может содержать информацию, не предназначенную
+                        для несовершеннолетних</p>
+                </div>
+
+
+                <div class="footer__copyright">
+                    <select class="footer__language">
+                        <option value="ru">ru</option>
+                        <option value="en">en</option>
+                        <option value="kz">kz</option>
+                    </select>
+                    <a href="https://yandex.kz/" class="footer__searcher"><span>© 2023</span> ООО «Яндекс Музыка»</a>
+                    <a href="https://yandex.kz/all" class="footer__projects">Проект компании Яндекс</a>
+                </div>
+
+
+            </div>
+        </footer>
+    </div>
+
+
+    <!--Audio-Pleer-->
+    <div class="player">
+        <div class="player__container">
+            <div class="player__progress-area">
+                <div class="player__progress-bar"></div>
+                <div class="player__timer">
+                    <div class="player__current">00:00</div>
+                    <div class="player__duration">00:00</div>
+                </div>
+                <audio preload="metadata" src="./audio/NEFFEX_-_Nightmare.mp3" id="main-audio"></audio>
+            </div>
+
+
+            <div class="player__controls">
+                <!-- !left -->
+                <div class="player__left">
+                    <div class="player__swiches">
+                        <i title="Перемотка назад" class="material-icons" id="audio-prev">skip_previous</i>
+                        <i class="material-icons" id="audio-play" title="Играть">play_arrow</i>
+                        <i title="Следующий трек" class="material-icons" id="audio-next">skip_next</i>
+                        <i title="Очередь прослушивания" class="material-icons">queue_music</i>
+                    </div>
+                    <div class="player__track">
+                        <img src="./img/music-img/NEFFEX_-_Nightmare.jpg" title="Из альбома NEFFEX">
+                        <div class="player__track-desc">
+                            <p class="player__name">Nightmare</p>
+                            <p class="player__artist">NEFFEX</p>
+                        </div>
+                        <div class="player__track-controls">
+                            <i title="Добавить в свою 'Коллекцию'" class="material-icons">favorite</i>
+                            <i title="Добавить в плейлист" class="material-icons">add</i>
+                            <i title="Поделиться треком" class="material-icons">ios_share</i>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- !right -->
+                <div class="player__right">
+                    <i title="В случайном порядке" class="material-icons">shuffle</i>
+                    <i title="Повторять" class="material-icons">repeat_one</i>
+                    <i title="Выключить звук" class="material-icons">volume_up</i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

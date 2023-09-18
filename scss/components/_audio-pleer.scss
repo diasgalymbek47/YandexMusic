@@ -1,0 +1,154 @@
+.material-icons:not(.player__play-pause i) {
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+    color: $notActive-text;
+    &:hover {
+        color: $active-text;
+    }
+}
+
+.player {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    &__container {
+        max-width: 950px;
+        padding: 0;
+    }
+
+    &__progress-area {
+        background-color: #aaa;
+        height: 16px;
+        position: relative;
+
+        cursor: pointer;
+    }
+
+    &__progress-bar {
+        background-color: $button-bg;
+        border-radius: 0 5px 5px 0;
+        height: 100%;
+        width: 0;
+
+        pointer-events: none;
+    }
+
+    &__timer,
+    &__controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+
+    &__current,
+    &__duration {
+        position: absolute;
+        left: 8px;
+        bottom: 0;
+
+        pointer-events: none;
+    }
+    &__duration {
+        left: auto;
+        right: 8px;
+    }
+
+    /*>───────────────────controls────────────────────<*/
+
+    &__controls {
+        height: 70px;
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid #dddddd;
+    }
+
+    &__left,
+    &__track,
+    &__track-controls,
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__swiches {
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        i:not(.player__play-pause i) {
+            margin-left: 15px;
+            font-size: 32px;
+        }
+    }
+    &__play-pause {
+        margin-left: 15px;
+        background: linear-gradient(#fffefe 0%, #cecaca 100%);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 3px 15px -2px rgba($color: $active-text, $alpha: 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:before {
+            content: "";
+            width: 38px;
+            height: 38px;
+            position: absolute;
+            border-radius: inherit;
+            background: linear-gradient($border 0%, $notActive-text 100%);
+        }
+
+        i {
+            display: flex;
+            justify-content: center;
+            line-height: 40px;
+            position: relative;
+            font-size: 24px;
+            color: $box-bg;
+        }
+        &:hover i {
+            color: $active-text;
+        }
+    }
+
+    &__track {
+        img {
+            width: 60px;
+            height: 60px;
+            margin-right: -8px;
+            cursor: pointer;
+        }
+    }
+
+    &__track-desc {
+        max-width: 150px;
+        overflow-x: hidden;
+    }
+
+    &__name {
+        margin-bottom: 4px;
+        font-weight: 700;
+    }
+    &__name:hover,
+    &__artist:hover {
+        cursor: pointer;
+        color: $button-bg;
+    }
+
+    &__right {
+        margin-right: 15px;
+        @media (width < 678px) {
+            display: none;
+        }
+    }
+
+    /*>───────────────────player-bottom────────────────────<*/
+}
