@@ -885,14 +885,27 @@
                 </footer>
             </div>
 
-            <div class="page-content-right">
-                <div class="page-content-right__box">
+            <div class="right">
+                <div class="right__ad">
                     <img src="https://avatars.mds.yandex.net/get-music-misc/30221/img.607d98512a9c4c6c15a8f36a/orig">
                     <img src="https://avatars.mds.yandex.net/get-music-misc/2419084/img.616e7a2271c40a7e12aca44e/orig">
-                    <div class="page-content-right__our-pages">
+                    <div class="right__our-pages">
                         <h4>Our Git Pages</h4>
                         <a href="https://github.com/diasgalymbek47">Dias Galymbek</a>
                         <a href="https://github.com/Adillettos">Adilet Tleukabyl</a>
+                    </div>
+                </div>
+
+                <div class="right-plist">
+                    <div class="right-plist__top">
+                        <p>ПЛЕЙЛИСТ</p>
+                        <div class="right-plist__name">Мне нравится</div>
+                        <div class="right-plist__update">Adilttos обновил плейлист 11 сентября</div>
+                        <div class="right-plist__controls">
+                            <button class="material-icons">play_arrow</button>
+                            <button class="material-icons">favorite_border</button>
+                            <button class="material-icons">more_horiz</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -907,9 +920,10 @@
                         <div class="player__current">00:00</div>
                         <div class="player__duration">00:00</div>
                     </div>
-                    <audio preload="metadata" src="./audio/NEFFEX_-_Nightmare.mp3" id="main-audio"></audio>
+                    <audio preload="metadata"
+                        src="https://diasgalymbek47.github.io/music/audio/Kilian K, Robbe  DJSM-Outside.mp3"
+                        id="main-audio"></audio>
                 </div>
-
 
                 <div class="player__controls">
                     <!-- !left -->
@@ -921,17 +935,18 @@
                             <i title="Очередь прослушивания" class="material-icons">queue_music</i>
                         </div>
                         <div class="player__track">
-                            <img src="./img/music-img/NEFFEX_-_Nightmare.jpg" title="Из альбома NEFFEX">
+                            <img id="audio-icon"
+                                src="https://diasgalymbek47.github.io/music/img/Outside - Kilian K, Robbe, DJSM.jpg"
+                                title="Из альбома Kilian K, Robbe, DJSM">
                             <div class="player__track-desc">
-                                <p class="player__name">Nightmare</p>
-                                <p class="player__artist">NEFFEX</p>
+                                <p id="audio-name" class="player__name">Outside</p>
+                                <p id="audio-artist" class="player__artist">Kilian K, Robbe, DJSM</p>
                             </div>
                             <div class="player__track-controls">
                                 <i title="Добавить в свою 'Коллекцию'" class="material-icons">favorite</i>
                                 <i title="Добавить в плейлист" class="material-icons">add</i>
                                 <i title="Поделиться треком" class="material-icons">ios_share</i>
                             </div>
-
                         </div>
                     </div>
                     <!-- !right -->
@@ -941,7 +956,6 @@
                         <i title="Выключить звук" class="material-icons">volume_up</i>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

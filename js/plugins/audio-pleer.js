@@ -6,17 +6,28 @@ const audioObj = document.querySelector('#main-audio'),
     audioProggresBar = document.querySelector('.player__progress-bar'),
     audioCurrent = document.querySelector('.player__current'),
     audioDuration = document.querySelector('.player__duration'),
-    audioRepeatBtn = document.querySelector('#audio-repeat');
+    audioRepeatBtn = document.querySelector('#audio-repeat'),
+    audioIcon = document.querySelector('#audio-icon'),
+    audioName = document.querySelector('#audio-name'),
+    audioArtist = document.querySelector('#audio-artist');
 
 const audio = new Audio();
 audio.src = audioObj.src;
 
+let allMusic = [];
 let currentAudio = 0;
 let audioProgressValue = 0;
 let playlist = true;
+audio.volume = 0.01;
+
+getMusics();
 
 audio.addEventListener('loadedmetadata', () => {
     audioDuration.textContent = getMinute(audio.duration);
+    audioIcon.setAttribute('src', allMusic[currentAudio].img);
+    audioIcon.setAttribute('title', `Из альбома ${allMusic[currentAudio].artist}`);
+    insertText(audioName, allMusic[currentAudio].name);
+    insertText(audioArtist, allMusic[currentAudio].artist);
 })
 
 audioPlayBtn.addEventListener('click', () => {
@@ -63,8 +74,8 @@ audio.addEventListener('timeupdate', () => {
 
     if (audio.currentTime == audio.duration) {
         audio.currentTime = 0;
-        
-        if(playlist) {
+
+        if (playlist) {
             currentAudio++;
             replaceSrcAudio();
         }
@@ -88,9 +99,11 @@ audioRepeatBtn.addEventListener('click', () => {
 
     if (condition) {
         insertText(audioRepeatBtn, 'repeat_one');
+        audioRepeatBtn.setAttribute('title', 'Повторять трэк');
         playlist = false;
     } else {
         insertText(audioRepeatBtn, 'repeat');
+        audioRepeatBtn.setAttribute('title', 'Повторять плейлист');
         playlist = true;
     }
 })
@@ -114,4 +127,14 @@ function pauseAudio() {
 function replaceSrcAudio() {
     audioObj.setAttribute('src', allMusic[currentAudio].src);
     audio.src = audioObj.src;
+}
+
+async function getMusics() {
+    const req = await fetch('https://diasgalymbek47.github.io/music/data.json');
+
+    const data = await req.json();
+
+    allMusic = await data;
+
+    console.log(allMusic);
 }
