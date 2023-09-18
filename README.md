@@ -1,7 +1,8 @@
 # Yandex-music
 Сайт для топовой музыки
 
-Ссылка на сайт --->  https://diasgalymbek47.github.io/Yandex-music/
+Ссылка на сайт --->  
+https://diasgalymbek47.github.io/YandexMusic/
 
 git pull - синхронизация до посл версий.
 git fetch и get merge удаленная/локальная <-ветка слияние двух веток
