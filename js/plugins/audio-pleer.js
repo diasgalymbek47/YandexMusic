@@ -152,6 +152,7 @@ function renderPlaylist() {
     let count = 0;
 
     allMusic.forEach(music => {
+        console.log(music.duration);
         const HTML = `
             <li class="list__line">
                 <div class="list__line-left">
