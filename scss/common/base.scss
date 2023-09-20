@@ -21,16 +21,17 @@ input[type="submit"] {
 
     &__content {
         display: flex;
+        overflow-x: hidden;
     }
 
     &__content-left {
         border-right: 1px solid $border;
+        max-width: 960px;
         width: 100%;
     }
 }
 
-[class*=__container] {
-    max-width: 950px;
+[class*="__container"] {
     padding: 0 30px;
 
     @media (max-width: 640px) {

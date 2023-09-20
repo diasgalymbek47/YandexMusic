@@ -1,3 +1,5 @@
+@import "../common/vars";
+
 .material-icons {
     cursor: pointer;
     user-select: none;
@@ -32,9 +34,9 @@
     &__progress-bar {
         pointer-events: none;
         background-color: $button-bg;
-        border-radius: 0 5px 5px 0;
         height: 100%;
         width: 0;
+        transition: width 0.3s ease;
     }
 
     &__timer,
@@ -77,20 +79,16 @@
         gap: 14px;
     }
 
-    &__swiches {
-        i {
-            font-size: 32px;
-            display: flex;
-        }
+    &__swiches i {
+        font-size: 32px;
+        display: flex;
     }
 
-    &__track {
-        img {
-            width: 50px;
-            height: 50px;
-            margin-right: -4px;
-            cursor: pointer;
-        }
+    &__track img {
+        width: 50px;
+        height: 50px;
+        margin-right: -4px;
+        cursor: pointer;
     }
 
     &__track-desc {

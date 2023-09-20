@@ -35,10 +35,11 @@
     &__menu {
         display: flex;
         align-items: center;
-        gap: 45px;
+        column-gap: 45px;
 
-        @media (max-width: 450px) {
-            gap: 10px;
+        @media (max-width: 510px) {
+            column-gap: 30px;
+            flex-wrap: wrap;
         }
     }
 

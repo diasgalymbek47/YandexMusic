@@ -1,9 +1,13 @@
 @import "../common/vars";
+/* Общие стили */
+.right,
+.right-plist {
+    padding: 0 20px;
+}
 
 .right {
-    min-width: 490px;
-    max-width: 490px;
-    padding: 20px 0;
+    max-width: 480px;
+    width: 100%;
 
     &__wrap {
         position: sticky;
@@ -49,82 +53,72 @@
     }
 }
 
-/*>───────────────────PlayList────────────────────<*/
-
-.right-plist {
-    padding: 0 20px;
-    
-
-    &__head {
-        display: flex;
-        flex-direction: column;
-
-        i {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            color: $active-text;
-        }
-
-        p {
-            color: $notActive-text;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            width: 120px;
-            cursor: pointer;
-            &:hover {
-                color: $active-text-border;
-            }
-        }
+/* Playlist */
+.right-plist__head {
+    i {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        color: $active-text;
     }
 
-    &__name {
-        color: $active-text;
-        cursor: pointer;
-        font-size: 20px;
+    p {
+        color: $notActive-text;
+        font-size: 13px;
+        letter-spacing: 1px;
         margin-bottom: 8px;
-        font-weight: 400;
+        width: 120px;
+        cursor: pointer;
         &:hover {
             color: $active-text-border;
         }
     }
+}
 
-    &__update {
-        font-size: 15px;
-        color: $notActive-text;
-        span {
-            color: $active-text;
-            cursor: pointer;
-            &:hover {
-                color: $active-text-border;
-            }
-        }
+.right-plist__name {
+    color: $active-text;
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 400;
+    &:hover {
+        color: $active-text-border;
     }
+}
 
-    &__controls {
-        margin: 20px 0 30px;
-        user-select: none;
-
-        button {
-            background: transparent;
-            border: 1px solid #aaa;
-            margin-left: 5px;
-            color: $active-text;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            &:first-child {
-                background: $button-bg;
-                border: none;
-                margin-left: 0;
-            }
+.right-plist__update {
+    font-size: 15px;
+    color: $notActive-text;
+    span {
+        color: $active-text;
+        cursor: pointer;
+        &:hover {
+            color: $active-text-border;
         }
     }
 }
 
-/*>───────────────────List────────────────────<*/
+.right-plist__controls {
+    margin: 20px 0 30px;
+    user-select: none;
 
+    button {
+        background: transparent;
+        border: 1px solid #aaa;
+        margin-left: 5px;
+        color: $active-text;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        &:first-child {
+            background: $button-bg;
+            border: none;
+            margin-left: 0;
+        }
+    }
+}
+
+/* List */
 .list {
     max-height: 66vh;
     overflow-y: auto;
@@ -163,6 +157,20 @@
             justify-content: center;
             display: none;
         }
+        i.active-pause {
+            display: flex;
+        }
+
+        i.active-pause ~ span,
+        i.active-play ~ span {
+            display: none;
+        }
+
+        i.active-play {
+            display: flex;
+            color: transparent;
+            animation: playAnim 0.6s ease infinite;
+        }
     }
 
     &__track {
@@ -170,29 +178,51 @@
         gap: 5px;
     }
 
-    &__track-name {color: $active-text;}
+    &__track-name {
+        color: $active-text;
+    }
 
     &__id-num,
     &__track-avtor,
-    &__description
-    {color: $notActive-text;}
-
-    &__track-name:hover, 
-    &__track-avtor:hover
-    {color: $active-text-border;}
-
-    &__icons {display: none;}
-
-    &__line:hover {
-        .list__id i, 
-        .list__icons
-        {display: flex;}
-
-        .list__id-num, 
-        .list__description
-        {display: none;}
+    &__description {
+        color: $notActive-text;
     }
 
-    &::-webkit-scrollbar {width: 2px;}
-    &::-webkit-scrollbar-thumb {background: #a0a0a0;}
+    &__track-name:hover,
+    &__track-avtor:hover {
+        color: $active-text-border;
+    }
+
+    &__icons {
+        display: none;
+    }
+
+    &__line:hover {
+        .list__id i,
+        .list__icons {
+            display: flex;
+        }
+
+        .list__id-num,
+        .list__description {
+            display: none;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #a0a0a0;
+    }
+}
+
+@keyframes playAnim {
+    50% {
+        scale: 0.3;
+    }
+    0%,
+    100% {
+        scale: 0.45;
+    }
 }
