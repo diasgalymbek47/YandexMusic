@@ -152,6 +152,7 @@ function renderPlaylist() {
     let count = 0;
 
     allMusic.forEach(music => {
+        console.log(music.duration);
         const HTML = `
             <li class="list__line">
                 <div class="list__line-left">
@@ -160,8 +161,8 @@ function renderPlaylist() {
                         <span class="list__id-num">${++count}</span>
                     </div>
                     <div class="list__track">
-                        <a href="#" class="list__track-name">${music.name}</a>
-                        —
+                        <a href="#" class="list__track-name">${music.name} —</a>
+                        
                         <a href="#" class="list__track-avtor">${music.artist}</a>
                     </div>
                 </div>
