@@ -8,7 +8,6 @@
     &__wrap {
         position: sticky;
         top: 30px;
-        overflow-y: scroll;
     }
 
     &__ad {
@@ -54,6 +53,7 @@
 
 .right-plist {
     padding: 0 20px;
+    
 
     &__head {
         display: flex;
@@ -126,6 +126,10 @@
 /*>───────────────────List────────────────────<*/
 
 .list {
+    max-height: 66vh;
+    overflow-y: auto;
+    margin-bottom: 200px;
+
     &__line {
         display: flex;
         align-items: center;
@@ -161,46 +165,34 @@
         }
     }
 
-    &__id-num {
-    }
-
     &__track {
         display: flex;
         gap: 5px;
     }
 
-    &__track-name {
-        color: $active-text;
-    }
+    &__track-name {color: $active-text;}
 
+    &__id-num,
     &__track-avtor,
-    &__description,
-    &__id-num {
-        color: $notActive-text;
-    }
-    &__track-avtor:hover,
-    &__track-name:hover {
-        color: $active-text-border;
-    }
+    &__description
+    {color: $notActive-text;}
 
-    &__right {
-    }
+    &__track-name:hover, 
+    &__track-avtor:hover
+    {color: $active-text-border;}
 
-    &__description {
-    }
-
-    &__icons {
-        display: none;
-    }
+    &__icons {display: none;}
 
     &__line:hover {
-        .list__icons,
-        .list__id i {
-            display: flex;
-        }
-        .list__description,
-        .list__id-num {
-            display: none;
-        }
+        .list__id i, 
+        .list__icons
+        {display: flex;}
+
+        .list__id-num, 
+        .list__description
+        {display: none;}
     }
+
+    &::-webkit-scrollbar {width: 2px;}
+    &::-webkit-scrollbar-thumb {background: #a0a0a0;}
 }
