@@ -16,13 +16,8 @@ input[type="submit"] {
 
 .page {
     max-width: 1440px;
-    padding: 0 0px;
     margin: 0 auto;
     background-color: $box-bg;
-
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 
     &__content {
         display: flex;
@@ -30,12 +25,12 @@ input[type="submit"] {
 
     &__content-left {
         border-right: 1px solid $border;
+        width: 100%;
     }
 }
 
 [class*=__container] {
     max-width: 950px;
-    margin: 0 auto;
     padding: 0 30px;
 
     @media (max-width: 640px) {

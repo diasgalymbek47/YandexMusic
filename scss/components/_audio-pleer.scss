@@ -1,4 +1,4 @@
-.material-icons{
+.material-icons {
     cursor: pointer;
     user-select: none;
     color: #c9c9c9;
@@ -17,6 +17,7 @@
 
     &__container {
         max-width: 1440px;
+        margin: 0 auto;
         padding: 0;
     }
 

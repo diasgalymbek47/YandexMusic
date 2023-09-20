@@ -886,78 +886,154 @@
             </div>
 
             <div class="right">
-                <div class="right__ad">
-                    <img src="https://avatars.mds.yandex.net/get-music-misc/30221/img.607d98512a9c4c6c15a8f36a/orig">
-                    <img src="https://avatars.mds.yandex.net/get-music-misc/2419084/img.616e7a2271c40a7e12aca44e/orig">
-                    <div class="right__our-pages">
-                        <h4>Our Git Pages</h4>
-                        <a href="https://github.com/diasgalymbek47">Dias Galymbek</a>
-                        <a href="https://github.com/Adillettos">Adilet Tleukabyl</a>
+                <div class="right__wrap">
+                    <div class="right__ad">
+                        <img
+                            src="https://avatars.mds.yandex.net/get-music-misc/30221/img.607d98512a9c4c6c15a8f36a/orig">
+                        <img
+                            src="https://avatars.mds.yandex.net/get-music-misc/2419084/img.616e7a2271c40a7e12aca44e/orig">
+                        <div class="right__our-pages">
+                            <h4>Our Git Pages</h4>
+                            <a href="https://github.com/diasgalymbek47">Dias Galymbek</a>
+                            <a href="https://github.com/Adillettos">Adilet Tleukabyl</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="right-plist">
-                    <div class="right-plist__top">
-                        <p>ПЛЕЙЛИСТ</p>
-                        <div class="right-plist__name">Мне нравится</div>
-                        <div class="right-plist__update">Adilttos обновил плейлист 11 сентября</div>
+                    <div class="right-plist">
+                        <div class="right-plist__head">
+                            <i class="material-icons">close</i>
+                            <p>ПЛЕЙЛИСТ</p>
+                            <h4 class="right-plist__name">Мне нравится
+                        </div>
+                        <p class="right-plist__update"><span>Adilttos</span> обновил плейлист 11 сентября</p>
                         <div class="right-plist__controls">
                             <button class="material-icons">play_arrow</button>
                             <button class="material-icons">favorite_border</button>
                             <button class="material-icons">more_horiz</button>
                         </div>
                     </div>
+
+                    <ul class="right-plist__list list">
+                        <li class="list__line">
+                            <div class="list__line-left">
+                                <div class="list__id">
+                                    <i class="material-icons">play_arrow</i>
+                                    <span class="list__id-num">1</span>
+                                </div>
+                                <div class="list__track">
+                                    <a href="#" class="list__track-name">Выше</a>
+                                    — 
+                                    <a href="#" class="list__track-avtor">Konfuz</a>
+                                </div>
+                            </div>
+                            <div class="list__right">
+                                <div class="list__description">1:54</div>
+                                <div class="list__icons">
+                                    <i class="material-icons">delete</i>
+                                    <i class="material-icons">favorite_border</i>
+                                    <i class="material-icons">add</i>
+                                    <i class="material-icons">more_horiz</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list__line">
+                            <div class="list__line-left">
+                                <div class="list__id">
+                                    <i class="material-icons">play_arrow</i>
+                                    <span class="list__id-num">1</span>
+                                </div>
+                                <div class="list__track">
+                                    <a href="#" class="list__track-name">Сердце пацана</a>
+                                    — 
+                                    <a href="#" class="list__track-avtor">YARMAK</a>
+                                </div>
+                            </div>
+                            <div class="list__right">
+                                <div class="list__description">3:50</div>
+                                <div class="list__icons">
+                                    <i class="material-icons">delete</i>
+                                    <i class="material-icons">favorite_border</i>
+                                    <i class="material-icons">add</i>
+                                    <i class="material-icons">more_horiz</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list__line">
+                            <div class="list__line-left">
+                                <div class="list__id">
+                                    <i class="material-icons">play_arrow</i>
+                                    <span class="list__id-num">1</span>
+                                </div>
+                                <div class="list__track">
+                                    <a href="#" class="list__track-name">Цветок</a>
+                                    — 
+                                    <a href="#" class="list__track-avtor">HammAli & Navai</a>
+                                </div>
+                            </div>
+                            <div class="list__right">
+                                <div class="list__description">2:52</div>
+                                <div class="list__icons">
+                                    <i class="material-icons">delete</i>
+                                    <i class="material-icons">favorite_border</i>
+                                    <i class="material-icons">add</i>
+                                    <i class="material-icons">more_horiz</i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Audio-Pleer-->
+    <div class="player">
+        <div class="player__container">
+            <div class="player__progress-area">
+                <div class="player__progress-bar"></div>
+                <div class="player__timer">
+                    <div class="player__current">00:00</div>
+                    <div class="player__duration">00:00</div>
+                </div>
+                <audio preload="metadata"
+                    src="https://diasgalymbek47.github.io/music/audio/Kilian K, Robbe  DJSM-Outside.mp3"
+                    id="main-audio"></audio>
+            </div>
+
+            <div class="player__controls">
+                <!-- !left -->
+                <div class="player__left">
+                    <div class="player__swiches">
+                        <i title="Перемотка назад" class="material-icons" id="audio-prev">skip_previous</i>
+                        <i class="material-icons" id="audio-play" title="Играть">play_arrow</i>
+                        <i title="Следующий трек" class="material-icons" id="audio-next">skip_next</i>
+                        <i title="Очередь прослушивания" class="material-icons">queue_music</i>
+                    </div>
+                    <div class="player__track">
+                        <img id="audio-icon"
+                            src="https://diasgalymbek47.github.io/music/img/Outside - Kilian K, Robbe, DJSM.jpg"
+                            title="Из альбома Kilian K, Robbe, DJSM">
+                        <div class="player__track-desc">
+                            <p id="audio-name" class="player__name">Outside</p>
+                            <p id="audio-artist" class="player__artist">Kilian K, Robbe, DJSM</p>
+                        </div>
+                        <div class="player__track-controls">
+                            <i title="Добавить в свою 'Коллекцию'" class="material-icons">favorite</i>
+                            <i title="Добавить в плейлист" class="material-icons">add</i>
+                            <i title="Поделиться треком" class="material-icons">ios_share</i>
+                        </div>
+                    </div>
+                </div>
+                <!-- !right -->
+                <div class="player__right">
+                    <i title="В случайном порядке" class="material-icons">shuffle</i>
+                    <i id="audio-repeat" title="Повторять плейлист" class="material-icons">repeat</i>
+                    <i title="Выключить звук" class="material-icons">volume_up</i>
                 </div>
             </div>
         </div>
-
-        <!--Audio-Pleer-->
-        <div class="player">
-            <div class="player__container">
-                <div class="player__progress-area">
-                    <div class="player__progress-bar"></div>
-                    <div class="player__timer">
-                        <div class="player__current">00:00</div>
-                        <div class="player__duration">00:00</div>
-                    </div>
-                    <audio preload="metadata"
-                        src="https://diasgalymbek47.github.io/music/audio/Kilian K, Robbe  DJSM-Outside.mp3"
-                        id="main-audio"></audio>
-                </div>
-
-                <div class="player__controls">
-                    <!-- !left -->
-                    <div class="player__left">
-                        <div class="player__swiches">
-                            <i title="Перемотка назад" class="material-icons" id="audio-prev">skip_previous</i>
-                            <i class="material-icons" id="audio-play" title="Играть">play_arrow</i>
-                            <i title="Следующий трек" class="material-icons" id="audio-next">skip_next</i>
-                            <i title="Очередь прослушивания" class="material-icons">queue_music</i>
-                        </div>
-                        <div class="player__track">
-                            <img id="audio-icon"
-                                src="https://diasgalymbek47.github.io/music/img/Outside - Kilian K, Robbe, DJSM.jpg"
-                                title="Из альбома Kilian K, Robbe, DJSM">
-                            <div class="player__track-desc">
-                                <p id="audio-name" class="player__name">Outside</p>
-                                <p id="audio-artist" class="player__artist">Kilian K, Robbe, DJSM</p>
-                            </div>
-                            <div class="player__track-controls">
-                                <i title="Добавить в свою 'Коллекцию'" class="material-icons">favorite</i>
-                                <i title="Добавить в плейлист" class="material-icons">add</i>
-                                <i title="Поделиться треком" class="material-icons">ios_share</i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- !right -->
-                    <div class="player__right">
-                        <i title="В случайном порядке" class="material-icons">shuffle</i>
-                        <i id="audio-repeat" title="Повторять плейлист" class="material-icons">repeat</i>
-                        <i title="Выключить звук" class="material-icons">volume_up</i>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 </body>
 

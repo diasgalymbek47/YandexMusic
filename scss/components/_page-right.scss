@@ -1,14 +1,20 @@
 @import "../common/vars";
 
 .right {
-    flex: 1;
-    padding: 20px;
-    
+    min-width: 490px;
+    max-width: 490px;
+    padding: 20px 0;
+
+    &__wrap {
+        position: sticky;
+        top: 30px;
+        overflow-y: scroll;
+    }
+
     &__ad {
         text-align: center;
-        position: sticky;
-        top: 20px;
         display: none;
+        padding: 0 20px;
     }
 
     img {
@@ -18,11 +24,11 @@
         border-radius: 4px;
     }
 
-    &__our-pages{
+    &__our-pages {
         display: flex;
         align-items: center;
         flex-direction: column;
-        
+
         h4 {
             margin-top: 20px;
             text-transform: uppercase;
@@ -30,7 +36,7 @@
         }
 
         a {
-            font-family: 'Courier New';
+            font-family: "Courier New";
             margin-top: 10px;
             font-size: 20px;
             padding: 10px 0;
@@ -43,39 +49,159 @@
             background: linear-gradient(90deg, rgb(139, 246, 150), rgb(59, 136, 225));
         }
     }
-
-
-    
 }
 
 /*>───────────────────PlayList────────────────────<*/
 
 .right-plist {
+    padding: 0 20px;
 
-    &__top {
+    &__head {
+        display: flex;
+        flex-direction: column;
+
+        i {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            color: $active-text;
+        }
+
+        p {
+            color: $notActive-text;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            width: 120px;
+            cursor: pointer;
+            &:hover {
+                color: $active-text-border;
+            }
+        }
     }
 
     &__name {
+        color: $active-text;
+        cursor: pointer;
+        font-size: 20px;
+        margin-bottom: 8px;
+        font-weight: 400;
+        &:hover {
+            color: $active-text-border;
+        }
     }
 
     &__update {
+        font-size: 15px;
+        color: $notActive-text;
+        span {
+            color: $active-text;
+            cursor: pointer;
+            &:hover {
+                color: $active-text-border;
+            }
+        }
     }
 
     &__controls {
-        margin-top: 20px;
+        margin: 20px 0 30px;
+        user-select: none;
 
         button {
             background: transparent;
-            font-size: 20px;
             border: 1px solid #aaa;
+            margin-left: 5px;
             color: $active-text;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            &:first-child{
+            &:first-child {
                 background: $button-bg;
                 border: none;
+                margin-left: 0;
             }
+        }
+    }
+}
+
+/*>───────────────────List────────────────────<*/
+
+.list {
+    &__line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        font-size: 14px;
+        padding: 0 20px;
+        cursor: pointer;
+    }
+
+    &__line-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    &__id {
+        width: 15px;
+        text-align: center;
+        position: relative;
+        i {
+            margin-left: -10px;
+            color: $active-text;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $button-bg;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+    }
+
+    &__id-num {
+    }
+
+    &__track {
+        display: flex;
+        gap: 5px;
+    }
+
+    &__track-name {
+        color: $active-text;
+    }
+
+    &__track-avtor,
+    &__description,
+    &__id-num {
+        color: $notActive-text;
+    }
+    &__track-avtor:hover,
+    &__track-name:hover {
+        color: $active-text-border;
+    }
+
+    &__right {
+    }
+
+    &__description {
+    }
+
+    &__icons {
+        display: none;
+    }
+
+    &__line:hover {
+        .list__icons,
+        .list__id i {
+            display: flex;
+        }
+        .list__description,
+        .list__id-num {
+            display: none;
         }
     }
 }
