@@ -899,88 +899,23 @@
                         </div>
                     </div>
 
-                    <div class="right-plist">
-                        <div class="right-plist__head">
-                            <i class="material-icons">close</i>
-                            <p>ПЛЕЙЛИСТ</p>
-                            <h4 class="right-plist__name">Мне нравится
+                    <div id="playlist" class="hidden">
+                        <div class="right-plist">
+                            <div class="right-plist__head">
+                                <i class="material-icons">close</i>
+                                <p>ПЛЕЙЛИСТ</p>
+                                <h4 class="right-plist__name">Мне нравится
+                            </div>
+                            <p class="right-plist__update"><span>Adilttos</span> обновил плейлист 11 сентября</p>
+                            <div class="right-plist__controls">
+                                <button class="material-icons">play_arrow</button>
+                                <button class="material-icons">favorite_border</button>
+                                <button class="material-icons">more_horiz</button>
+                            </div>
                         </div>
-                        <p class="right-plist__update"><span>Adilttos</span> обновил плейлист 11 сентября</p>
-                        <div class="right-plist__controls">
-                            <button class="material-icons">play_arrow</button>
-                            <button class="material-icons">favorite_border</button>
-                            <button class="material-icons">more_horiz</button>
-                        </div>
-                    </div>
 
-                    <ul class="right-plist__list list">
-                        <li class="list__line">
-                            <div class="list__line-left">
-                                <div class="list__id">
-                                    <i class="material-icons">play_arrow</i>
-                                    <span class="list__id-num">1</span>
-                                </div>
-                                <div class="list__track">
-                                    <a href="#" class="list__track-name">Выше</a>
-                                    — 
-                                    <a href="#" class="list__track-avtor">Konfuz</a>
-                                </div>
-                            </div>
-                            <div class="list__right">
-                                <div class="list__description">1:54</div>
-                                <div class="list__icons">
-                                    <i class="material-icons">delete</i>
-                                    <i class="material-icons">favorite_border</i>
-                                    <i class="material-icons">add</i>
-                                    <i class="material-icons">more_horiz</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list__line">
-                            <div class="list__line-left">
-                                <div class="list__id">
-                                    <i class="material-icons">play_arrow</i>
-                                    <span class="list__id-num">1</span>
-                                </div>
-                                <div class="list__track">
-                                    <a href="#" class="list__track-name">Сердце пацана</a>
-                                    — 
-                                    <a href="#" class="list__track-avtor">YARMAK</a>
-                                </div>
-                            </div>
-                            <div class="list__right">
-                                <div class="list__description">3:50</div>
-                                <div class="list__icons">
-                                    <i class="material-icons">delete</i>
-                                    <i class="material-icons">favorite_border</i>
-                                    <i class="material-icons">add</i>
-                                    <i class="material-icons">more_horiz</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list__line">
-                            <div class="list__line-left">
-                                <div class="list__id">
-                                    <i class="material-icons">play_arrow</i>
-                                    <span class="list__id-num">1</span>
-                                </div>
-                                <div class="list__track">
-                                    <a href="#" class="list__track-name">Цветок</a>
-                                    — 
-                                    <a href="#" class="list__track-avtor">HammAli & Navai</a>
-                                </div>
-                            </div>
-                            <div class="list__right">
-                                <div class="list__description">2:52</div>
-                                <div class="list__icons">
-                                    <i class="material-icons">delete</i>
-                                    <i class="material-icons">favorite_border</i>
-                                    <i class="material-icons">add</i>
-                                    <i class="material-icons">more_horiz</i>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                        <ul class="right-plist__list list"></ul>
+                    </div>
                 </div>
             </div>
 
@@ -1008,7 +943,7 @@
                         <i title="Перемотка назад" class="material-icons" id="audio-prev">skip_previous</i>
                         <i class="material-icons" id="audio-play" title="Играть">play_arrow</i>
                         <i title="Следующий трек" class="material-icons" id="audio-next">skip_next</i>
-                        <i title="Очередь прослушивания" class="material-icons">queue_music</i>
+                        <i id="playlist-btn" title="Очередь прослушивания" class="material-icons">queue_music</i>
                     </div>
                     <div class="player__track">
                         <img id="audio-icon"

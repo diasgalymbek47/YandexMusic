@@ -9,7 +9,8 @@ const audioObj = document.querySelector('#main-audio'),
     audioRepeatBtn = document.querySelector('#audio-repeat'),
     audioIcon = document.querySelector('#audio-icon'),
     audioName = document.querySelector('#audio-name'),
-    audioArtist = document.querySelector('#audio-artist');
+    audioArtist = document.querySelector('#audio-artist'),
+    playlistBtn = document.querySelector('#playlist-btn');
 
 const audio = new Audio();
 audio.src = audioObj.src;
@@ -18,7 +19,7 @@ let allMusic = [];
 let currentAudio = 0;
 let audioProgressValue = 0;
 let playlist = true;
-audio.volume = 0.01;
+audio.volume = 0.05;
 
 getMusics();
 
@@ -108,6 +109,13 @@ audioRepeatBtn.addEventListener('click', () => {
     }
 })
 
+playlistBtn.addEventListener('click', () => {
+    classToggle(document.querySelector('.right__ad'), 'hidden');
+    classToggle(document.querySelector('#playlist'), 'hidden');
+
+    renderPlaylist();
+})
+
 function playAudio() {
     audio.play();
     classRemove(audioPlayBtn, 'pause');
@@ -124,17 +132,62 @@ function pauseAudio() {
     audioPlayBtn.setAttribute('title', 'Играть');
 }
 
-function replaceSrcAudio() {
+function replaceSrcAudio(id) {
+    if (id) {
+        const index = allMusic.indexOf(allMusic.find(music => music.id == id));
+        currentAudio = index;
+    }
+
     audioObj.setAttribute('src', allMusic[currentAudio].src);
     audio.src = audioObj.src;
 }
 
-async function getMusics() {
-    const req = await fetch('https://diasgalymbek47.github.io/music/data.json');
+function renderPlaylist() {
+    const playlistList = document.querySelector('.right-plist__list');
+    const list = document.createElement('ul');
 
-    const data = await req.json();
+    classAdd(list, 'right-plist__list');
+    classAdd(list, 'list');
+
+    let count = 0;
+
+    allMusic.forEach(music => {
+        const HTML = `
+            <li class="list__line">
+                <div class="list__line-left">
+                    <div class="list__id">
+                        <i class="material-icons" onclick="replaceSrcAudio(${music.id}), playAudio()">play_arrow</i>
+                        <span class="list__id-num">${++count}</span>
+                    </div>
+                    <div class="list__track">
+                        <a href="#" class="list__track-name">${music.name}</a>
+                        —
+                        <a href="#" class="list__track-avtor">${music.artist}</a>
+                    </div>
+                </div>
+                <div class="list__right">
+                    <div class="list__description">1:54</div>
+                    <div class="list__icons">
+                        <i class="material-icons">delete</i>
+                        <i class="material-icons">favorite_border</i>
+                        <i class="material-icons">add</i>
+                        <i class="material-icons">more_horiz</i>
+                    </div>
+                </div>
+            </li>
+        `
+
+        list.insertAdjacentHTML('beforeend', HTML);
+    })
+
+    playlistList.parentNode.replaceChild(list, playlistList);
+}
+
+async function getMusics() {
+    const res = await fetch('https://diasgalymbek47.github.io/music/data.json');
+
+    const data = await res.json();
 
     allMusic = await data;
-
-    console.log(allMusic);
+    console.log(data);
 }
