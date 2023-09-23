@@ -12,7 +12,8 @@ const audioObj = document.querySelector('#main-audio'),
     audioArtist = document.querySelector('#audio-artist'),
     playlistBtn = document.querySelector('#playlist-btn'),
     playlistClose = document.querySelector('#close-playlist'),
-    playPlaylist = document.querySelector('#play-playlist');
+    playPlaylist = document.querySelector('#play-playlist'),
+    shuffleBtn = document.querySelector('#shuffle');
 
 const audio = new Audio();
 audio.src = audioObj.src;
@@ -21,12 +22,15 @@ let allMusic = [];
 let currentAudio = 0;
 let audioProgressValue = 0;
 let playlist = true;
+let shuffle = false;
+let oldAudio = 0;
 audio.volume = 0.05;
 
 getMusics();
 
 setTimeout(() => {
     renderPlaylist();
+    
 }, 500);
 
 audio.addEventListener('loadedmetadata', () => {
@@ -50,7 +54,11 @@ audioPlayBtn.addEventListener('click', () => {
 });
 
 audioPrevBtn.addEventListener('click', () => {
-    currentAudio--;
+    if (shuffle) {
+        currentAudio = oldAudio;
+    } else {
+        currentAudio--;
+    }
 
     if (currentAudio < 0) {
         currentAudio = allMusic.length - 1;
@@ -62,7 +70,12 @@ audioPrevBtn.addEventListener('click', () => {
 })
 
 audioNextBtn.addEventListener('click', () => {
-    currentAudio++;
+    if (shuffle) {
+        oldAudio = currentAudio;
+        currentAudio = Math.floor(Math.random() * allMusic.length - 1);
+    } else {
+        currentAudio++;
+    }
 
     if (currentAudio > allMusic.length - 1) {
         currentAudio = 0;
@@ -84,6 +97,10 @@ audio.addEventListener('timeupdate', () => {
 
     if (audio.currentTime == audio.duration) {
         audio.currentTime = 0;
+
+        if (shuffle) {
+            currentAudio = Math.floor(Math.random() * allMusic.length - 1);
+        }
 
         if (playlist) {
             currentAudio++;
@@ -141,6 +158,18 @@ playPlaylist.addEventListener('click', () => {
     playAudio();
 })
 
+shuffleBtn.addEventListener('click', () => {
+    if (shuffleBtn.classList.contains('shuffle')) {
+        shuffle = false;
+        classRemove(shuffleBtn, 'shuffle');
+        insertText(shuffleBtn, 'trending_flat');
+    } else {
+        shuffle = true;
+        classAdd(shuffleBtn, 'shuffle');
+        insertText(shuffleBtn, 'shuffle');
+    }
+})
+
 function playAudio() {
     audio.play();
     classRemove(audioPlayBtn, 'pause');
@@ -167,6 +196,7 @@ function pauseAudio() {
     audioPlayBtn.setAttribute('title', 'Играть');
 
     removeAudioClass();
+    addAudioClass();
 }
 
 function replaceSrcAudio(id) {
@@ -228,7 +258,13 @@ function renderPlaylist() {
 function addAudioClass() {
     const playlistMusics = document.querySelectorAll('.list__line');
 
-    classAdd(playlistMusics[currentAudio], 'active-play');
+    if (audioPlayBtn.classList.contains('play')) {
+        classAdd(playlistMusics[currentAudio], 'active-play');
+        classRemove(playlistMusics[currentAudio], 'active-pause');
+    } else {
+        classRemove(playlistMusics[currentAudio], 'active-play');
+        classAdd(playlistMusics[currentAudio], 'active-pause');
+    }
 }
 
 function removeAudioClass() {
@@ -236,6 +272,7 @@ function removeAudioClass() {
 
     playlistMusics.forEach(music => {
         classRemove(music, 'active-play');
+        classRemove(music, 'active-pause');
     })
 }
 
