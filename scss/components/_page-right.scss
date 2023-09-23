@@ -61,7 +61,7 @@
 
     #playlist {
         overflow-y: auto;
-        padding-right: 5px;
+        padding:0 5px;
 
         @media (width < 1150px) {
             padding-top: 30px;
@@ -74,11 +74,12 @@
         }
 
         &::-webkit-scrollbar {
-            width: 2px;
+            width: 3px;
         }
 
         &::-webkit-scrollbar-thumb {
             background: #a0a0a0;
+            border-radius: 4px;
         }
     }
 }
