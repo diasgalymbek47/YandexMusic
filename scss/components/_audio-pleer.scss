@@ -6,6 +6,9 @@
     color: #c9c9c9;
     font-size: 24px;
     padding: 0 5px;
+    width: 42px;
+    text-align: center;
+    z-index: 1;
     &:hover {
         color: $active-text;
     }
@@ -114,9 +117,106 @@
         }
     }
 
+    /*>───────────────────Volume────────────────────<*/
+
     &__volume {
-        span {
+        position: relative;
+        display: inherit;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -55px;
+            height: 80px;
+            width: 100%;
+            display: none;
         }
+        &:hover {
+            &::after,
+            .player__slider {
+                display: flex;
+            }
+        }
+    }
+
+    &__slider {
+        box-shadow: 0 15px 30px rgba(0,0,0,.2);
+        background-color: $box-bg;
+        border-radius: 20px 0px;
+        width: 42px;
+        height: 175px;
+        padding: 20px 0;
+        position: absolute;
+        top: -220px;
+        left: 0px;
+
+        display: inherit;
+        justify-content: center;
+        display: none;
+        z-index: 1;
+    }
+
+    &__slider-area {
+        background-color: #c9c9c9;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 6px;
+        height: 100%;
+
+        display: inherit;
+        align-items: center;
+        flex-direction: column-reverse;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -5px;
+            width: 16px;
+            height: 1px;
+            pointer-events: none;
+            background-color: #c9c9c9;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: -27px;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent; 
+            border-right: 5px solid transparent;
+            border-top: 8px solid $box-bg;
+        }
+        &:hover .player__slider-bar {
+            background-color: #ffcc00;
+            &::after{
+                border: 1px solid #ffcc00;
+            }
+        }
+    }
+
+    &__slider-bar {
+        background-color: $button-bg;
+        border-radius: inherit;
+        width: 100%;
+        height: 34%; // <-- Ползунок
+        transition: height 0.3s ease;
+        position: relative;
+        z-index: 1;
+
+        &::after {
+            content: "";
+            border: 1px solid #c8c7c7;
+            background: $box-bg;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: -8px;
+            left: -5px;
+        }
+        
     }
 
     /*>───────────────────player-bottom────────────────────<*/
