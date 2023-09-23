@@ -10,7 +10,9 @@ const audioObj = document.querySelector('#main-audio'),
     audioIcon = document.querySelector('#audio-icon'),
     audioName = document.querySelector('#audio-name'),
     audioArtist = document.querySelector('#audio-artist'),
-    playlistBtn = document.querySelector('#playlist-btn');
+    playlistBtn = document.querySelector('#playlist-btn'),
+    playlistClose = document.querySelector('#close-playlist'),
+    playPlaylist = document.querySelector('#play-playlist');
 
 const audio = new Audio();
 audio.src = audioObj.src;
@@ -22,6 +24,10 @@ let playlist = true;
 audio.volume = 0.05;
 
 getMusics();
+
+setTimeout(() => {
+    renderPlaylist();
+}, 500);
 
 audio.addEventListener('loadedmetadata', () => {
     audioDuration.textContent = getMinute(audio.duration);
@@ -39,6 +45,7 @@ audioPlayBtn.addEventListener('click', () => {
         return
     }
 
+    addAudioClass();
     playAudio();
 });
 
@@ -50,6 +57,7 @@ audioPrevBtn.addEventListener('click', () => {
     }
 
     replaceSrcAudio();
+    removeAudioClass();
     playAudio();
 })
 
@@ -63,6 +71,7 @@ audioNextBtn.addEventListener('click', () => {
     audioObj.setAttribute('src', allMusic[currentAudio].src);
     audio.src = audioObj.src;
 
+    removeAudioClass();
     playAudio();
 })
 
@@ -116,20 +125,48 @@ playlistBtn.addEventListener('click', () => {
     renderPlaylist();
 })
 
+playlistClose.addEventListener('click', () => {
+    classAdd(document.querySelector('#playlist'), 'hidden');
+    classRemove(document.querySelector('.right__ad'), 'hidden');
+})
+
+playPlaylist.addEventListener('click', () => {
+    const condition = document.querySelector('#play-playlist').classList.contains('play') ? true : false;
+
+    if (condition) {
+        pauseAudio();
+        return
+    }
+
+    playAudio();
+})
+
 function playAudio() {
     audio.play();
     classRemove(audioPlayBtn, 'pause');
     classAdd(audioPlayBtn, 'play');
+    classRemove(document.querySelector('#play-playlist'), 'pause');
+    classAdd(document.querySelector('#play-playlist'), 'play');
     insertText(audioPlayBtn, 'pause');
+    insertText(document.querySelector('#play-playlist'), 'pause');
+    document.querySelector('#play-playlist').setAttribute('title', 'Пауза');
     audioPlayBtn.setAttribute('title', 'Пауза');
+
+    addAudioClass();
 }
 
 function pauseAudio() {
     audio.pause();
     classRemove(audioPlayBtn, 'play');
     classAdd(audioPlayBtn, 'pause');
+    classRemove(document.querySelector('#play-playlist'), 'play');
+    classAdd(document.querySelector('#play-playlist'), 'pause');
     insertText(audioPlayBtn, 'play_arrow');
+    insertText(document.querySelector('#play-playlist'), 'play_arrow');
+    document.querySelector('#play-playlist').setAttribute('title', 'Играть');
     audioPlayBtn.setAttribute('title', 'Играть');
+
+    removeAudioClass();
 }
 
 function replaceSrcAudio(id) {
@@ -140,6 +177,9 @@ function replaceSrcAudio(id) {
 
     audioObj.setAttribute('src', allMusic[currentAudio].src);
     audio.src = audioObj.src;
+
+    renderPlaylist();
+    addAudioClass();
 }
 
 function renderPlaylist() {
@@ -152,12 +192,11 @@ function renderPlaylist() {
     let count = 0;
 
     allMusic.forEach(music => {
-        console.log(music.duration);
         const HTML = `
             <li class="list__line">
                 <div class="list__line-left">
                     <div class="list__id">
-                        <i class="material-icons" onclick="replaceSrcAudio(${music.id}), playAudio()">play_arrow</i>
+                        <i id="playMusic" class="material-icons" onclick="replaceSrcAudio(${music.id}), playAudio()">play_arrow</i>
                         <span class="list__id-num">${++count}</span>
                     </div>
                     <div class="list__track">
@@ -182,6 +221,22 @@ function renderPlaylist() {
     })
 
     playlistList.parentNode.replaceChild(list, playlistList);
+    removeAudioClass();
+    addAudioClass();
+}
+
+function addAudioClass() {
+    const playlistMusics = document.querySelectorAll('.list__line');
+
+    classAdd(playlistMusics[currentAudio], 'active-play');
+}
+
+function removeAudioClass() {
+    const playlistMusics = document.querySelectorAll('.list__line');
+
+    playlistMusics.forEach(music => {
+        classRemove(music, 'active-play');
+    })
 }
 
 async function getMusics() {
@@ -190,5 +245,4 @@ async function getMusics() {
     const data = await res.json();
 
     allMusic = await data;
-    console.log(data);
 }
